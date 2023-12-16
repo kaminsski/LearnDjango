@@ -1,0 +1,41 @@
+body{
+  background-color: black;
+}
+nav{
+  background-color: white;
+}
+.video-container {
+    position: relative;
+   height:1000px; /* Ekran yüksekliği kadar video oynatma alanı */
+ 
+  }
+  
+  #video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Videonun bütün arka planı kapsamasını sağlar */
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .indexContainer{
+    color: white;
+    position: relative;
+    margin: auto;
+    margin-top: 50px;
+   
+    
+   
+  }
+h3, h1{
+    color: white
+  }
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}  

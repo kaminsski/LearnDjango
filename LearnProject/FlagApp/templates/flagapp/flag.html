@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static "css/global.css" %}">
+
+{% endblock css %}
+
+
+{% block content %}
+<div class="infoContainer ">
+
+    <div class="point flex items-center  bg-white">
+        <img class="w-1/3 rounded-full" src="{{request.user.avatar.url}}" alt="">
+        <div class="total w-full">
+        <p class="text-center text-sm font-bold bg-white p-2"> Total Points</p>
+        <p class="text-center text-sm font-bold bg-white   py-2"> {{request.user.pointTotal}} P</p>
+    </div>
+        <div class="game w-full">
+            <p class="text-center  text-sm font-bold bg-white p-2"> Game Points </p>
+            <p class="text-center  text-sm font-bold bg-white py-2 "> {{gameScore}} P</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="flagContainer flex flex-col justify-center align-center pb-4 sm:p-10 w-4/5 lg:w-1/3 bg-gray-500 bg-opacity-50 my-4 rounded-xl">
+    <div class="bottom flex">
+
+        {% for message in messages %}
+        {% if message.tags == "info" %}
+        <div class="hid bg-green-500 text-white p-2 text-center w-full" role="alert">
+            {{message}} +{{lastFlag.flagPoint}}P
+        </div>
+        {% else %}
+        <div class="hid bg-red-500 text-black p-2 text-center w-full" role="alert">
+            {{message}} -{{lastFlag.flagPoint}}P
+        </div>
+        {% endif %}
+       
+        {% endfor %}
+        </div>
+    <img src="{{flag.image.url}}" alt="">
+<p class="text-center">(Flag Point: {{flag.flagPoint}})</p>
+<p class="text-center">  {{remain}} / {{allObj}} </p>
+<form class="flex-col column justify-center" action="{% url "flag"  %}" method="POST">
+    {% csrf_token %}
+    <button class="block bg-green-500 rounded-lg p-2  mt-4 text-white w-4/5 m-auto" value="{{randomFlag}}" name="selected" type="submit"> {{randomFlag}} </button>
+    <button class="block bg-green-500 rounded-lg p-2 m-auto mt-4 text-white w-4/5" value="{{randomFlag1}}" name="selected" type="submit"> {{randomFlag1}} </button>
+    <button class="block bg-green-500 rounded-lg p-2 m-auto mt-4 text-white w-4/5" value="{{randomFlag2}}" name="selected" type="submit"> {{randomFlag2}} </button>
+
+
+</form>
+
+</div>
+
+<script>
+    var flash = document.querySelector(".hid")
+    console.log(flash)
+    setTimeout(function(){ 
+      flash.style.display = "none"; 
+   }, 10000);
+  
+  </script>
+{% endblock content %}
+

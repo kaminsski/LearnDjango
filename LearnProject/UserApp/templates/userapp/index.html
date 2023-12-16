@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}<link rel="stylesheet" href="{% static "css/global.css" %}">
+
+{% endblock css %}
+
+
+{% block content %}
+<div class="video-container">
+    <video autoplay  muted loop id="video-background">
+      <source src="{% static "img/video1.mp4" %}" type="video/mp4">
+      <!-- Farklı formatlarda video desteği için ek kaynaklar buraya eklenebilir -->
+      Your browser does not support the video tag.
+    </video>
+    <div class="indexContainer p-3 text-center bg-gray-500 bg-opacity-70 w-5/6">
+        <h1 class="text-2xl font-bold mb-10">IMPROVE YOUR GENERAL CULTURE</h1>
+        <img src="{% static "userapp/img/learn.png" %}" alt="">
+        <h3 class="text-sm p-5 text-justify">AS LEARN, WE IMPROVE YOUR FLAG AND VOCABULARY KNOWLEDGE. TEST YOURSELF AND IMPROVE YOUR GENERAL CULTURE. SELECT ONE OF THE OPTIONS BELOW TO GET STARTED</h3>
+        <div class="gameSelectContainer">
+            {% if request.user.is_authenticated %}
+            <a class="bg-blue-500 p-2 text-sm" href="{% url "capital" %}"><i class="fa-solid fa-city m-1"></i>CapitalGame</a>
+            <a class="bg-blue-500 p-2 text-sm" href="{% url "flag" %}"><i class="fa-regular fa-flag m-1 text-xl"></i>FlagGame</a>
+            {% else %}
+            <p class="mb-2">Log in or sign up to get started</p>
+            <a class="bg-blue-500 p-2 text-sm" href="{% url "login" %}">Login&Register</a>
+
+            {% endif %}
+        </div>
+        </div>
+</div>
+
+
+
+{% endblock content %}
+

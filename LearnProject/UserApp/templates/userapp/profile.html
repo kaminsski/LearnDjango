@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "css/global.css" %}">
+{% endblock css %}
+
+
+{% block content %}
+
+<div class="bg-gray-100 mt-5 mb-5">
+    <div class="container mx-auto py-8">
+        <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 px-4">
+            <div class="col-span-4 sm:col-span-3">
+                <div class="bg-white shadow rounded-lg p-6">
+                    <div class="flex flex-col items-center">
+                        <img src=" {{request.user.avatar.url}} " class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
+
+                        </img>
+                        <h1 class="text-xl text-black font-bold"> {{user.username}} </h1>
+                        <p class="text-gray-600"> {{user.email}} </p>
+                      
+                    </div>
+                    <hr class="my-6 border-t border-gray-300">
+                    <div class="flex flex-col">
+                        <span class="text-gray-600 uppercase font-bold tracking-wider mb-2">Date Joined</span>
+                        <ul>
+                            <li class="mb-2 text-black"> {{user.date_joined}} </li>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-4 sm:col-span-9">
+                <div class="bg-white shadow rounded-lg p-6">
+                    <h2 class="text-xl font-bold mb-4 "> Total Point </h2>
+                    <p class="text-gray-700">
+                        {{user.pointTotal}} P
+                    </p>
+
+                    
+
+
+                    <h2 class="text-xl font-bold mt-6 mb-4">FlagGame Records</h2>
+                    <div class="mb-6">
+                        {% for record in recordsFlag %}
+                        <div class="flex justify-between">
+                            <p>{{record.score}} P</p>
+                            <p>{{record.createdAt|date:"d.m.Y"}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <h2 class="text-xl font-bold mt-6 mb-4">CapitalGame Records</h2>
+                    <div class="mb-6">
+                        {% for record in recordsCapital %}
+                        <div class="flex justify-between">
+                            <p>{{record.score}} P</p>
+                            <p>{{record.createdAt|date:"d.m.Y"}}</p>
+
+                        </div>
+                        {% endfor %}
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

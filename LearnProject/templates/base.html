@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/global.css" %}">
+
+    {% block css %}{% endblock css %}
+</head>
+<body>
+   
+
+
+        {% include "partials/nav.html" %}
+        <div class="content" {% if request.get_full_path != "/" %}style="background-image: linear-gradient(to left, #5e78c2, #a17ac0, #d07eb2, #ee8ba0, #fba090, #f9a881, #f0b276, #e3bd6f, #cfba5d, #b8b74d, #9db440, #7db139);"{% endif %} >
+            {% block content %}
+            {% endblock content %}
+            
+
+        </div>
+    {% include "partials/footer.html" %}
+    {% block js %}{% endblock js %}
+    <script src="https://kit.fontawesome.com/f8a5a369a4.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</body>
+</html>
+
